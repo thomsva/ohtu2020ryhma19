@@ -6,6 +6,10 @@
 
 [Product Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/2)
 
+
+## Doukumentaatio
+
+[Tuntilista](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/Tunnit.md)
 ## Definition of Done
 
 * User storien hyväksymiskriteerit täyttyvät eli Cucumber-testit menevät läpi
