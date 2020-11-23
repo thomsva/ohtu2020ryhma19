@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-/gradleproject1/.gradle/
-/readingtiplibrary/.gradle/
-/ReadingTipLibrary/.gradle/
-=======
-.gradle/
->>>>>>> 43a7631daba9a31ebfe9033a166c6623e5f869de
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
