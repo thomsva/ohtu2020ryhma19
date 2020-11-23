@@ -1,6 +1,6 @@
 # Sprintti 1
 
-| Nimi          | Ma            | TI    | KE      | TO    | PE    | LA     | SU    |
+| Nimi          | PE            | LA    | SU      | MA    | TI    | KE     | TO    |
 | ------------- |:-------------:| -----:| -----:  | -----:| -----:| -----: | -----:|
 | Nicholas      |               |       |         |       |       |        |       |
 | Petteri       |               |       |         |       |       |        |       |
