@@ -16,6 +16,12 @@ jobs:
       with:
         java-version: 1.11
     - name: Grant execute permission for gradlew
-      run: chmod +x ./ReadingTipLibrary/gradlew
+      run: (cd ReadingTipLibrary; chmod +x ./gradlew)
     - name: Test with Gradle
       run: (cd ReadingTipLibrary; ./gradlew test)
+    - name: Code coverage report
+      run: (cd ReadingTipLibrary; ./gradlew jacocoTestReport)
+    - name: Data to codecov
+      run: bash <(curl -s https://codecov.io/bash)
+    - name: Checkstyle
+      run: (cd ReadingTipLibrary; ./gradlew checkstyleMain)
