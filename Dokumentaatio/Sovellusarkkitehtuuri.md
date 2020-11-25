@@ -1,3 +1,3 @@
 # Sovellusarkkitehtuuri
 
-![Image of class structure](Dokumentaatio/ohtu-miniprojekti-uml.svg)
+![Image of class structure](ohtu-miniprojekti-uml.svg)
