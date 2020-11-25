@@ -7,10 +7,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import library.domain.ReadingTip;
 
 public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     private String databaseAddress;
+    
+    public ReadingTipDatabaseDao(String databaseAddress) {
+         this.databaseAddress = databaseAddress;
+    }
 
 //    @Override
 //    public List<String> getAllTips(int userId) throws Exception {
@@ -26,7 +31,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 //            int id = result.getInt("id");
 //
 //            ReadingTip readingTip = new ReadingTip(id, title);
-//            readingTips.add(todo);
+//            readingTips.add(readingTip);
 //        }
 //
 //        conn.close();
