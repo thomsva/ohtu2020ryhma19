@@ -5,7 +5,8 @@
  */
 package library.domain;
 
+import library.dao.ReadingTipDao;
 
 public class ReadingTipService {
-    
+
 }

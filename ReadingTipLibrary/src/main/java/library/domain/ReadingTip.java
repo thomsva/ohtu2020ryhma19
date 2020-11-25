@@ -10,5 +10,5 @@ package library.domain;
  * @author nicholas
  */
 public class ReadingTip {
-    
+
 }
