@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package library.domain;
+package library.ui;
+import library.domain.ReadingTipService;
 
-/**
- *
- * @author nicholas
- */
-public class ReadingTip {
 
+public class ReadingTipUi {
+    
 }

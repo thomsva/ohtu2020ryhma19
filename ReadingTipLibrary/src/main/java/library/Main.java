@@ -1,6 +1,6 @@
 
 package library;
-import library.ui.Ui;
+import library.ui.ReadingTipUi;
 
 public class Main {
 
