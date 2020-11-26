@@ -1,0 +1,63 @@
+
+package library.domain;
+
+
+public class VideoTip implements ReadingTip{
+    
+    private String title;
+    private String url;
+    private String comment;
+    private String[] tags;
+    private String[] relatedCourses;
+    private final String type = "video";
+    
+    public VideoTip(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void SetTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String[] getTags() {
+        return tags;
+    }
+
+    @Override
+    public String[] getRelatedCourses() {
+        return relatedCourses;
+    }
+
+    @Override
+    public void setMoreInfo1(String url) {
+       this.url = url;
+    }
+
+    @Override
+    public void setMoreInfo2(String comment) {
+        this.comment = comment;
+    }
+
+    @Override
+    public String getMoreInfo1() {
+       return url;
+    }
+
+    @Override
+    public String getMoreInfo2() {
+       return comment;
+    }
+    
+}

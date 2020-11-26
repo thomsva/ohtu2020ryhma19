@@ -1,16 +1,21 @@
 package library.domain;
 
-public class BookTip implements ReadingTip {
+public class PodcastTip implements ReadingTip{
 
     private String title;
+    private String author;
+    private String podcastName;
     private String[] tags;
     private String[] relatedCourses;
-    private String author;
-    private String isbn;
-    private final String type = "book";
-
-    public BookTip(String title) {
+    private final String type = "podcast";
+    
+    public PodcastTip(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override
@@ -20,12 +25,7 @@ public class BookTip implements ReadingTip {
 
     @Override
     public void SetTitle(String title) {
-
-    }
-
-    @Override
-    public String getType() {
-        return type;
+        this.title = title;
     }
 
     @Override
@@ -40,12 +40,12 @@ public class BookTip implements ReadingTip {
 
     @Override
     public void setMoreInfo1(String author) {
-        this.author = author;
+       this.author = author;
     }
 
     @Override
-    public void setMoreInfo2(String isbn) {
-        this.isbn = isbn;
+    public void setMoreInfo2(String podcastName) {
+       this.podcastName = podcastName;
     }
 
     @Override
@@ -55,11 +55,7 @@ public class BookTip implements ReadingTip {
 
     @Override
     public String getMoreInfo2() {
-        return isbn;
+        return this.podcastName;
     }
-    
-    @Override
-    public String toString() {
-        return "Author: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
-    }
+
 }

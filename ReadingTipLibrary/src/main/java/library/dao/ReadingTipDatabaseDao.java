@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import library.domain.BlogPostTip;
 import library.domain.BookTip;
+import library.domain.PodcastTip;
 import library.domain.ReadingTip;
+import library.domain.VideoTip;
 
 public class ReadingTipDatabaseDao implements ReadingTipDao {
 
@@ -19,22 +23,33 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     }
 
     @Override
-    public List<BookTip> getAllTips() throws Exception {
+    public List<ReadingTip> getAllTips() throws Exception {
 
         Connection conn = DriverManager.getConnection(databaseAddress);
-        Statement stmt = conn.createStatement();
-        ResultSet result = stmt.executeQuery("SELECT * FROM ReadingTip");
+        List<ReadingTip> readingTips = new ArrayList<>();
 
-        List<BookTip> readingTips = new ArrayList<>();
+        try {
 
-        while (result.next()) {
-            String title = result.getString("title");
-            String author = result.getString("author");
-            int id = result.getInt("id");
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT * FROM ReadingTip");
 
-            BookTip readingTip = new BookTip(title);
-            readingTip.setAuthor(author);
-            readingTips.add(readingTip);
+            while (result.next()) {
+                
+                String id = result.getString("id");
+                String type = result.getString("type");
+                String title = result.getString("title");
+
+                ReadingTip readingTip = createTipWithType(type, title);
+
+                String info1 = result.getString("info1");
+                String info2 = result.getString("info2");
+                readingTip.setMoreInfo1(info1);
+                readingTip.setMoreInfo2(info2);
+                readingTips.add(readingTip);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Database is empty.");
         }
 
         conn.close();
@@ -44,22 +59,18 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     }
 
     @Override
-    public void addTip(BookTip Booktip) throws Exception {
+    public void addTip(ReadingTip readingTip) throws Exception {
 
         Connection conn = DriverManager.getConnection(databaseAddress);
+        createSchemaIfNotExists(conn);
 
-        Statement s = conn.createStatement();
-        try {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO ReadingTip (type,title,info1,info2) "
+                + "VALUES (?,?,?,?)");
 
-            s.execute("CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, title, author)");
-        } catch (Exception e) {
-            System.out.println(" fail");
-        }
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO ReadingTip (title,author) "
-                + "VALUES (?,?)");
-
-        stmt.setString(1, Booktip.getTitle());
-        stmt.setString(2, Booktip.getAuthor());
+        stmt.setString(1, readingTip.getType());
+        stmt.setString(2, readingTip.getTitle());
+        stmt.setString(3, readingTip.getMoreInfo1());
+        stmt.setString(4, readingTip.getMoreInfo2());
         stmt.execute();
 
         conn.close();
@@ -74,4 +85,34 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 //        stmt.execute();
 //        conn.close();
 //    }
+    public void createSchemaIfNotExists(Connection conn) throws SQLException {
+
+        Statement stmt = conn.createStatement();
+
+        try {
+
+            stmt.execute("CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title, info1, info2)");
+        } catch (Exception e) {
+            System.out.println("Database schema already exists.");
+        }
+
+    }
+
+    public ReadingTip createTipWithType(String type, String title) {
+
+        ReadingTip tip;
+
+        if (type.equals("book")) {
+            tip = new BookTip(title);
+        } else if (type.equals("blogpost")) {
+            tip = new BlogPostTip(title);
+        } else if (type.equals("video")) {
+            tip = new VideoTip(title);
+        } else {
+            tip = new PodcastTip(title);
+        }
+
+        return tip;
+    }
+
 }

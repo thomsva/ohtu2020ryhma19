@@ -13,11 +13,15 @@ public class ReadingTipUi {
     public void start() throws Exception{
       ReadingTipService ok = new ReadingTipService();
      
-      String author = "kennedy";
-      String title = "president";
+      String type = "book";
+      String title = "The Hitchhiker's Guide to the Galaxy";
+      String info1 = "Douglas Adams";
+      String info2 = "	0-330-25864-8";
       
-      ok.createTip(author,title);
+      ok.createTip(type, title, info1, info2);
+      ok.browseReadingTips();
       
+ 
     }
     
 }

@@ -1,14 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.domain;
 
-/**
- *
- * @author nicholas
- */
-public class ReadingTip {
+public interface ReadingTip {
+    
+    String getType();
+
+    String getTitle();
+    
+    void SetTitle(String title);
+    
+    String[] getTags();
+    
+    String[] getRelatedCourses();
+    
+    void setMoreInfo1(String info);
+    
+    void setMoreInfo2(String info);
+    
+    String getMoreInfo1();
+    
+    String getMoreInfo2();
 
 }
