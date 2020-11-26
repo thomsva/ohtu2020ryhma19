@@ -45,3 +45,8 @@ run {
     standardInput = System.in
 }
 
+checkstyle {
+    config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    toolVersion '8.37'
+}
+
