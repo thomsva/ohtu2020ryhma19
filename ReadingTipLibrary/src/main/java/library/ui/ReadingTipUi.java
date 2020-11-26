@@ -4,20 +4,25 @@
  * and open the template in the editor.
  */
 package library.ui;
+
+import java.util.Scanner;
 import library.domain.ReadingTipService;
 
-
 public class ReadingTipUi {
-    
-    
-    public void start() throws Exception{
-      ReadingTipService ok = new ReadingTipService();
-     
-      String author = "kennedy";
-      String title = "president";
-      
-      ok.createTip(author,title);
-      
+
+    public void start() throws Exception {
+        ReadingTipService ok = new ReadingTipService();
+        Scanner sc = new Scanner(System.in);
+
+        //String author = "kennedy";
+        System.out.println("Enter a author name: ");
+        String author = sc.nextLine();
+
+        System.out.println("Enter a title");
+        String title = sc.nextLine();
+
+        ok.createTip(author, title);
+
     }
-    
+
 }
