@@ -21,3 +21,9 @@
 * Luokat ja metodit dokumentoitu JavaDocilla
 * Käännös ja testit suoritettu virheettä GitHub Actionsissa
 
+## Asennus- ja käynnistysohje
+
+Lataa ohjelmakoodi GitHubista ja avaa asennuskansio terminaalilla. Kirjoita seuraavat komennot:
+* cd ReadingTipLibrary
+* ./gradlew shadowJar
+* java -jar build/libs/ReadingTipLibrary-all.jar
