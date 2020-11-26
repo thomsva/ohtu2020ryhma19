@@ -1,12 +1,13 @@
-
 package library.dao;
 
 import java.util.List;
+import library.domain.BookTip;
 
 public interface ReadingTipDao {
 
-    void addTip(String readingTip) throws Exception;
+    void addTip(BookTip bookTip) throws Exception;
 //    void removeTip(String id) throws Exception;
-//    List<String> getAllTips(int userId) throws Exception;
+
+    List<BookTip> getAllTips() throws Exception;
 
 }

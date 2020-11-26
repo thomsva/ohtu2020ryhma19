@@ -12,8 +12,12 @@ public class ReadingTipUi {
     
     public void start() throws Exception{
       ReadingTipService ok = new ReadingTipService();
+     
+      String author = "kennedy";
+      String title = "president";
       
-      ok.createTip("moi");
+      ok.createTip(author,title);
+      
     }
     
 }
