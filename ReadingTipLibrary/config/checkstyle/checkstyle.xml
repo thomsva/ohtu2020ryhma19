@@ -237,8 +237,8 @@
       <message key="ws.notPreceded"
              value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
     </module>
-    <!-- Commented out Google styleguide indentation. Using Checkstyle default indentation rule instead.
 
+    <!-- Commented out Google styleguide indentation. Using Checkstyle default indentation rule instead.
     <module name="Indentation">
       <property name="basicOffset" value="2"/>
       <property name="braceAdjustment" value="2"/>
