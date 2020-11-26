@@ -12,9 +12,9 @@ import library.domain.ReadingTip;
 public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     private String databaseAddress;
-    
+
     public ReadingTipDatabaseDao(String databaseAddress) {
-         this.databaseAddress = databaseAddress;
+        this.databaseAddress = databaseAddress;
     }
 
 //    @Override
@@ -39,11 +39,12 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 //        return readingTips;
 //
 //    }
-
     @Override
     public void addTip(String title) throws Exception {
 
         Connection conn = DriverManager.getConnection(databaseAddress);
+        Statement s = conn.createStatement();
+        s.execute("CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, title)");
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO ReadingTip (title) "
                 + "VALUES (?)");
         stmt.setString(1, title);

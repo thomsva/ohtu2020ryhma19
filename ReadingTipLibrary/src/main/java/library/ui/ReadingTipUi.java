@@ -9,4 +9,11 @@ import library.domain.ReadingTipService;
 
 public class ReadingTipUi {
     
+    
+    public void start() throws Exception{
+      ReadingTipService ok = new ReadingTipService();
+      
+      ok.createTip("moi");
+    }
+    
 }
