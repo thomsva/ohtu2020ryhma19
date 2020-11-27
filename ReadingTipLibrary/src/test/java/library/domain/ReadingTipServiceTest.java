@@ -5,6 +5,7 @@
  */
 package library.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,56 +15,43 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import library.domain.ReadingTip;
 
-public class ReadingTipServiceTest   {
+public class ReadingTipServiceTest {
 
-    FakeReadingTipDao fakeTip;
+    FakeReadingTipDaoTest readingTip;
     ReadingTipService service;
 
     public ReadingTipServiceTest() {
     }
 
-//    @BeforeClass
-//    public static void setUpClass() {
-//    }
-//
-//    @AfterClass
-//    public static void tearDownClass() {
-//    }
     @Before
     public void setUp() throws Exception {
-        fakeTip = new FakeReadingTipDao();
+        readingTip = new FakeReadingTipDaoTest();
         service = new ReadingTipService();
-        
-        fakeTip.addTip(new BookTip("First title"));
-        fakeTip.addTip(new BookTip("Second title"));
-        fakeTip.addTip(new BookTip("Third title"));
-       
+        List<ReadingTip> readingTips = new ArrayList<>();
+        readingTip.addTip(new BookTip("First title"));
+        readingTip.addTip(new BookTip("Second title"));
+        readingTip.addTip(new BookTip("Third title"));
+        readingTips.add(new BookTip("First title"));
+
     }
+
     @Test
-    public void atStartListContainsSetUpValues() throws Exception{
-       List<ReadingTip> readingTips = fakeTip.getAllTips();
+    public void atStartListContainsSetUpValues() throws Exception {
+        List<ReadingTip> readingTips = readingTip.getAllTips();
         assertEquals(3, readingTips.size());
     }
+
     @Test
-    public void readingTipContainsAllValues() throws Exception{
-        List<ReadingTip> readingTips = fakeTip.getAllTips();
-        
-        
-    }
-    @Test
-    public void aBookTipCanBeCreated() throws Exception{
-        fakeTip.addTip(new BookTip("Forth title"));
-        
-        
+    public void readingTipContainsAllValues() throws Exception {
+        List<ReadingTip> readingTips = readingTip.getAllTips();
+
     }
 
-    @After
-    public void tearDown() {
+    @Test
+    public void readingTipContainsSpecificTip() throws Exception {
+        List<ReadingTip> readingTips = readingTip.getAllTips();
+
+        assertEquals(readingTips.get(0).getTitle(), "First title");
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

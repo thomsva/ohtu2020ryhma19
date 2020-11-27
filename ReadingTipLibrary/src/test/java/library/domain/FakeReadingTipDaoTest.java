@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import library.domain.ReadingTip;
+package library.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,23 +11,14 @@ import static org.junit.Assert.*;
 import library.dao.ReadingTipDao;
 import library.domain.ReadingTip;
 
-/**
- *
- * @author nicholas
- */
-public class ReadingTipDaoTest implements ReadingTipDao {
+public class FakeReadingTipDaoTest implements ReadingTipDao {
 
     List<ReadingTip> readingTips;
 
-    public ReadingTipDaoTest() {
+    public FakeReadingTipDaoTest() {
         readingTips = new ArrayList<>();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     @Override
     public void addTip(ReadingTip bookTip) throws Exception {
         readingTips.add(bookTip);
