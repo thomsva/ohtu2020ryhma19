@@ -1,5 +1,7 @@
 # ohtu2020ryhma19
 
+![Java CI with Gradle](https://github.com/Muisku/ohtu2020ryhma19/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 ## Backlogit
 
 [Sprint Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/1)
