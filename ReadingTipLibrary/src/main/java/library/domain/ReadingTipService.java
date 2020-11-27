@@ -17,7 +17,14 @@ public class ReadingTipService {
         readingTipDao = new ReadingTipDatabaseDao("jdbc:sqlite:readingtip.db");
     }
 
-    /** Creates ReadingTip. */
+    /**
+     * Creates ReadingTip.
+     *
+     * @param type   The type of the ReadingTip 
+     * @param title  title
+     * @param info1  The content of this field will depend on the type. 
+     * @param info2  The content of this field will depend on the type. 
+     */
     public void createTip(String type, String title, String info1, String info2) throws Exception {
 
         ReadingTip rt = createTipWithType(type, title);
@@ -26,7 +33,12 @@ public class ReadingTipService {
         readingTipDao.addTip(rt);
     }
 
-    /** Lists all ReadingTips. */
+
+    /**
+     * Lists all ReadingTips.
+     *
+     * @return A list of all ReadingTips.  
+     */
     public List<ReadingTip> browseReadingTips() throws Exception {
         List<ReadingTip> tipList = readingTipDao.getAllTips();
         
@@ -37,7 +49,12 @@ public class ReadingTipService {
         return tipList;
     }
 
-    /** Creates ReadingTip with only a type and a title. */
+    /** Creates ReadingTip with only a type and a title. 
+     *
+     * @param type   The type of the ReadingTip 
+     * @param title  The title of the ReadingTip
+     * @return The new ReadingTip.  
+     */
     public ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;
