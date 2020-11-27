@@ -7,7 +7,7 @@ public interface ReadingTip {
 
     String getTitle();
     
-    void SetTitle(String title);
+    void setTitle(String title);
     
     String[] getTags();
     

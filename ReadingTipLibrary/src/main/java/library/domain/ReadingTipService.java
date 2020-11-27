@@ -8,8 +8,7 @@ import java.util.List;
 import library.dao.ReadingTipDao;
 import library.dao.ReadingTipDatabaseDao;
 
-import library.dao.ReadingTipDao;
-
+/** Provides methods for handling ReadingTips. */
 public class ReadingTipService {
 
     private ReadingTipDao readingTipDao;
@@ -18,6 +17,7 @@ public class ReadingTipService {
         readingTipDao = new ReadingTipDatabaseDao("jdbc:sqlite:readingtip.db");
     }
 
+    /** Creates ReadingTip. */
     public void createTip(String type, String title, String info1, String info2) throws Exception {
 
         ReadingTip rt = createTipWithType(type, title);
@@ -26,6 +26,7 @@ public class ReadingTipService {
         readingTipDao.addTip(rt);
     }
 
+    /** Lists all ReadingTips. */
     public List<ReadingTip> browseReadingTips() throws Exception {
         List<ReadingTip> tipList = readingTipDao.getAllTips();
         
@@ -36,6 +37,7 @@ public class ReadingTipService {
         return tipList;
     }
 
+    /** Creates ReadingTip with only a type and a title. */
     public ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;

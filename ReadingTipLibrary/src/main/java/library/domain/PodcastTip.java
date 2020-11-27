@@ -25,7 +25,7 @@ public class PodcastTip implements ReadingTip {
     }
 
     @Override
-    public void SetTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
