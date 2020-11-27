@@ -1,5 +1,6 @@
 package library.domain;
 
+/** A ReadingTip of type BookTip. */
 public class BookTip implements ReadingTip {
 
     private String title;

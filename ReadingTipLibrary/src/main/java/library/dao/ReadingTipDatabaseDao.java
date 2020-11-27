@@ -14,6 +14,7 @@ import library.domain.PodcastTip;
 import library.domain.ReadingTip;
 import library.domain.VideoTip;
 
+/** ReadingTipDatabaseDao Class. Used to access ReadingTips in the database. */
 public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     private String databaseAddress;
@@ -64,7 +65,8 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         Connection conn = DriverManager.getConnection(databaseAddress);
         createSchemaIfNotExists(conn);
 
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO ReadingTip (type,title,info1,info2) "
+        PreparedStatement stmt = conn.prepareStatement(
+                "INSERT INTO ReadingTip (type,title,info1,info2) "
                 + "VALUES (?,?,?,?)");
 
         stmt.setString(1, readingTip.getType());
@@ -76,28 +78,32 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         conn.close();
     }
 
-//    @Override
-//    public void removeTip(String id) throws Exception {
-//        
-//        Connection conn = DriverManager.getConnection(databaseAddress);
-//        PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
-//        stmt.setInt(1, Integer.parseInt(id));
-//        stmt.execute();
-//        conn.close();
-//    }
+    //    @Override
+    //    public void removeTip(String id) throws Exception {
+    //        
+    //        Connection conn = DriverManager.getConnection(databaseAddress);
+    //        PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
+    //        stmt.setInt(1, Integer.parseInt(id));
+    //        stmt.execute();
+    //        conn.close();
+    //    }
+
+    /** Creates ReadingTip table if it doesn't exist. */
     public void createSchemaIfNotExists(Connection conn) throws SQLException {
 
         Statement stmt = conn.createStatement();
 
         try {
 
-            stmt.execute("CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title, info1, info2)");
+            stmt.execute(
+                "CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title, info1, info2)");
         } catch (Exception e) {
             System.out.println("Database schema already exists.");
         }
 
     }
 
+    /** Creates new ReadingTip. */
     public ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;

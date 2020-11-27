@@ -1,6 +1,7 @@
 
 package library.domain;
 
+/** A ReadingTip of type BlogPostTip. */
 public class BlogPostTip implements ReadingTip {
     
     private String title;
@@ -51,7 +52,7 @@ public class BlogPostTip implements ReadingTip {
 
     @Override
     public String getMoreInfo1() {
-       return author;
+        return author;
     }
 
     @Override

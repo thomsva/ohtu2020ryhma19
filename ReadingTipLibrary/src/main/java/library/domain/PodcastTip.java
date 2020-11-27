@@ -1,6 +1,7 @@
 package library.domain;
 
-public class PodcastTip implements ReadingTip{
+/** A ReadingTip of type PodcastTip. */
+public class PodcastTip implements ReadingTip {
 
     private String title;
     private String author;
@@ -40,12 +41,12 @@ public class PodcastTip implements ReadingTip{
 
     @Override
     public void setMoreInfo1(String author) {
-       this.author = author;
+        this.author = author;
     }
 
     @Override
     public void setMoreInfo2(String podcastName) {
-       this.podcastName = podcastName;
+        this.podcastName = podcastName;
     }
 
     @Override

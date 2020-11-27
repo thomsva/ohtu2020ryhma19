@@ -1,8 +1,8 @@
 
 package library.domain;
 
-
-public class VideoTip implements ReadingTip{
+/** A ReadingTip of type VideoTip. */
+public class VideoTip implements ReadingTip {
     
     private String title;
     private String url;
@@ -42,7 +42,7 @@ public class VideoTip implements ReadingTip{
 
     @Override
     public void setMoreInfo1(String url) {
-       this.url = url;
+        this.url = url;
     }
 
     @Override
@@ -52,12 +52,12 @@ public class VideoTip implements ReadingTip{
 
     @Override
     public String getMoreInfo1() {
-       return url;
+        return url;
     }
 
     @Override
     public String getMoreInfo2() {
-       return comment;
+        return comment;
     }
     
 }
