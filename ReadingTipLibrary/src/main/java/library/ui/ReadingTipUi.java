@@ -1,6 +1,5 @@
 package library.ui;
 
-import java.util.Scanner;
 import library.domain.ReadingTip;
 import library.domain.ReadingTipService;
 import library.io.IO;
@@ -8,7 +7,6 @@ import library.io.IO;
 /** The user interface. */
 public class ReadingTipUi {
     
-    Scanner scanner;
     ReadingTipService service;
     private IO io;
 
@@ -20,7 +18,6 @@ public class ReadingTipUi {
     public void start() throws Exception {
 
         service = new ReadingTipService();
-        scanner = new Scanner(System.in);
 
         io.print("Hello user!");
 

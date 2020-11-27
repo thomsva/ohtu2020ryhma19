@@ -52,15 +52,23 @@ public class Stepdefs {
     }
 
 
-//    @Given("a reading tip with type {String} is created")
-//    public void readingTipIsCreated(String type) {  
-//    }    
+    @Given("a reading tip {string} with type {String} is created")
+    public void readingTipIsCreated(String title, String type) throws Exception {
+        inputLines.add("A");
+        inputLines.add(title);
+        inputLines.add(type);
+        
+        io = new StubIO(inputLines); 
+        ui = new ReadingTipUi(io);
+        ui.start();
+    }    
     
-//    @When("it is saved to the database")
-//    public void readingTipIsSaved() {
-//    }
+    @When("it is saved to the database")
+    public void readingTipIsSaved() {
+        
+    }
     
-//    @Then("it can be found from the database")
-//    public void readingTipCanBeFound() {
-//    }
+    @Then("it can be found from the database")
+    public void readingTipCanBeFound() {
+    }
 }
