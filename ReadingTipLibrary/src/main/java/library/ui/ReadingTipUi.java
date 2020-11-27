@@ -56,11 +56,11 @@ public class ReadingTipUi {
     }
     
 
-    private void createReadingTip() {
+    private void createReadingTip() throws Exception {
         String title = io.readLine("What is the title of the reading tip?");
         printTypes();
         String type = io.readLine("What kind of reading tip it is?");
-        ReadingTip tip = service.createTipWithType(type.toLowerCase(), title);
+        ReadingTip tip = service.createTip(type.toLowerCase(), title);
         io.print(tip.toString());
     }
     
