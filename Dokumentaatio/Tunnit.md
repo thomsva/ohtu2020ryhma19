@@ -18,7 +18,7 @@
 | Nicholas      |               |       |         |       |       |        |       |       |
 | Petteri       |               |       |         |       |       |        |       |       |
 | Thomas        |               |       |         |       |       |        |       |       |
-| Julia         |    1,5        |       |         |       |       |        |       |       |
+| Julia         |    1,5        |  0,5  |         |       |       |        |       |       |
 | Antti         |               |       |         |       |       |        |       |       |
 | Veera         |               |       |         |       |       |        |       |       |
 ## Yhteensä: 
