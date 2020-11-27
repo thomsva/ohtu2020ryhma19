@@ -14,18 +14,16 @@ import library.ui.*;
 
 public class Stepdefs {
     ReadingTipUi ui;
-    ReadingTipDao readingTipDao;
     List<String> inputLines;
     StubIO io;
+    ReadingTipService service;
     
     
     @Before
     public void setup(){
         inputLines = new ArrayList<>();     
         io = new StubIO(inputLines);
-        ui = new ReadingTipUi(io);
-        
-//        readingTipDao = new ReadingTipDatabaseDao();        
+        ui = new ReadingTipUi(io);    
     }
 
     
@@ -40,35 +38,30 @@ public class Stepdefs {
         inputLines.add(title);
         inputLines.add(type);
         
-        io = new StubIO(inputLines); 
+        io = new StubIO(inputLines);
         ui = new ReadingTipUi(io);
         ui.start();
-    }    
-
-
+    }
+    
     @Then("system will respond with {string}")
-    public void systemWillRespondWith(String expectedOutput) {
+    public void readingTipCanBeFound(String expectedOutput) {
         assertTrue(io.getPrints().contains(expectedOutput));
     }
+   
+    
+    @When("all reading tips are listed")
+    public void readingTipIsSaved() throws Exception {
+        inputLines.add("L");
+        io = new StubIO(inputLines);
+        ui = new ReadingTipUi(io);
+        ui.start();        
+    }
 
+    
+//    @Then("a reading tip {string} with type {string} is printed")
+//    public void systemWillRespondWith(String title, String type) {
+//        assertTrue(io.getPrints().contains(title));
+//        assertTrue(io.getPrints().contains(type));
+//    }
 
-//    @Given("a reading tip {string} with type {String} is created")
-//    public void readingTipIsCreated(String title, String type) throws Exception {
-//        inputLines.add("A");
-//        inputLines.add(title);
-//        inputLines.add(type);
-//        
-//        io = new StubIO(inputLines); 
-//        ui = new ReadingTipUi(io);
-//        ui.start();
-//    }    
-//    
-//    @When("it is saved to the database")
-//    public void readingTipIsSaved() {
-//        
-//    }
-//    
-//    @Then("it can be found from the database")
-//    public void readingTipCanBeFound() {
-//    }
 }

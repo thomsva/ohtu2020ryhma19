@@ -55,7 +55,7 @@ public class ReadingTipService {
      * @param title  The title of the ReadingTip
      * @return The new ReadingTip.  
      */
-    public ReadingTip createTipWithType(String type, String title) {
+    private ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;
 
