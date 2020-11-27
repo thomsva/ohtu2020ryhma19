@@ -26,7 +26,7 @@ public class ReadingTipUi {
             } else if (input.equals("M")) {
                 System.out.println("This option is coming soon. Thank you for being patient!");
             } else if (input.equals("L")) {
-                System.out.println("This option is coming soon. Thank you for being patient!");
+                listAllReadingTips();
             } else if (input.equals("Q")) {
                 break;
             } else {
@@ -46,22 +46,26 @@ public class ReadingTipUi {
         System.out.println("(Q)uit");
     }
     
-    private void createReadingTip() {
+    private void createReadingTip() throws Exception {
         System.out.println("What is the title of the reading tip?");
         String title = scanner.nextLine();
         printTypes();
         String type = scanner.nextLine();
-        ReadingTip tip = service.createTipWithType(type.toLowerCase(), title);
-        System.out.println(tip.toString());
+        service.createTip(type.toLowerCase(), title);
+        System.out.println("Lisätty!");
+    }
+    
+    private void listAllReadingTips() throws Exception {
+        service.browseReadingTips();
     }
     
     private void printTypes() {
         System.out.println("What kind of reading tip it is?");
         System.out.println("Options:");
-        System.out.println("Blogpost");
-        System.out.println("Book");
-        System.out.println("Podcast");
-        System.out.println("Video");
+        System.out.println("blogpost");
+        System.out.println("book");
+        System.out.println("podcast");
+        System.out.println("video");
     }
 
     //        ReadingTipService ok = new ReadingTipService();

@@ -25,11 +25,11 @@ public class ReadingTipService {
      * @param info1  The content of this field will depend on the type. 
      * @param info2  The content of this field will depend on the type. 
      */
-    public void createTip(String type, String title, String info1, String info2) throws Exception {
+    public void createTip(String type, String title) throws Exception {
 
         ReadingTip rt = createTipWithType(type, title);
-        rt.setMoreInfo1(info1);
-        rt.setMoreInfo2(info2);
+//        rt.setMoreInfo1(info1);
+//        rt.setMoreInfo2(info2);
         readingTipDao.addTip(rt);
     }
 
