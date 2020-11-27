@@ -5,10 +5,10 @@ package library.dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import library.domain.ReadingTip;
 
 import java.util.ArrayList;
 import java.util.List;
+import library.dao.ReadingTipDatabaseDao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,27 +18,25 @@ import static org.junit.Assert.*;
 import library.dao.ReadingTipDao;
 import library.domain.ReadingTip;
 
-/**
- *
- * @author nicholas
- */
-public class ReadingTipDaoTest implements ReadingTipDao {
+public class ReadingTipDatabaseDaoTest implements ReadingTipDao {
 
+    ReadingTipDatabaseDao ReadingDatabase;
     List<ReadingTip> readingTips;
 
-    public ReadingTipDaoTest() {
+    public ReadingTipDatabaseDaoTest() {
         readingTips = new ArrayList<>();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Before
+    public void setUp() {
+        //ReadingDatabase = new ReadingTipDatabaseDao("jdbc:sqlite:test.db");
+
+    }
+
     @Override
     public void addTip(ReadingTip bookTip) throws Exception {
-        readingTips.add(bookTip);
 
+        readingTips.add(bookTip);
     }
 
     @Override

@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import library.dao.ReadingTipDao;
+import library.domain.ReadingTip;
 
-/**
- *
- * @author nicholas
- */
-public class FakeReadingTipDao implements ReadingTipDao {
+public class FakeReadingTipDaoTest implements ReadingTipDao {
 
     List<ReadingTip> readingTips;
 
-    public FakeReadingTipDao() {
+    public FakeReadingTipDaoTest() {
         readingTips = new ArrayList<>();
     }
 

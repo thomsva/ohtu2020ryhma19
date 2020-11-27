@@ -58,6 +58,7 @@ public class ReadingTipUi {
         io.print("(Q)uit");
     }
     
+
     private void createReadingTip() {
         String title = io.readLine("What is the title of the reading tip?");
         printTypes();
@@ -74,10 +75,11 @@ public class ReadingTipUi {
         io.print("Podcast");
         io.print("Video");
     }
-
+    
     private void listAllReadingTips() throws Exception {
         service.browseReadingTips();
     }
+
     
     
     //        ReadingTipService ok = new ReadingTipService();
