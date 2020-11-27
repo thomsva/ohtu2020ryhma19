@@ -32,7 +32,7 @@ test {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'library.Main'
+        attributes mainClassName: 'library.Main'
     }
 }
 

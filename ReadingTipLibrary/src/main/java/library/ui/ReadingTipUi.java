@@ -3,67 +3,83 @@ package library.ui;
 import java.util.Scanner;
 import library.domain.ReadingTip;
 import library.domain.ReadingTipService;
+import library.io.IO;
 
 /** The user interface. */
 public class ReadingTipUi {
     
     Scanner scanner;
     ReadingTipService service;
+    private IO io;
 
+    public ReadingTipUi(IO io) {
+        this.io = io;
+    }
+    
     /** Method to start the user interface. */
     public void start() throws Exception {
 
         service = new ReadingTipService();
         scanner = new Scanner(System.in);
 
-        System.out.println("Hello user!");
+        io.print("Hello user!");
 
         while (true) {
             printOptions();
-            String input = scanner.nextLine();
-            if (input.equals("A")) {
+            String command = io.readLine("Give a command:");
+        
+            if (command.isEmpty()) {
+                break;
+            }
+            
+            
+            if (command.equals("A")) {
                 createReadingTip();
-            } else if (input.equals("M")) {
-                System.out.println("This option is coming soon. Thank you for being patient!");
-            } else if (input.equals("L")) {
-                System.out.println("This option is coming soon. Thank you for being patient!");
-            } else if (input.equals("Q")) {
+            } else if (command.equals("M")) {
+                io.print("This option is coming soon. Thank you for being patient!");
+            } else if (command.equals("L")) {
+                listAllReadingTips();
+            } else if (command.equals("Q")) {
                 break;
             } else {
-                System.out.println("Oops, command not existing! Try again.");
+                io.print("Oops, command not existing! Try again.");
             }
         }
     }
 
     private void printOptions() {
-        System.out.println("You can...");
-        System.out.println("(A)dd a new reading tip"); //this is what we have at the moment
-        System.out.println("(M)odify an existing reading tip"); //coming soon
+        io.print("You can...");
+        io.print("(A)dd a new reading tip"); //this is what we have at the moment
+        io.print("(M)odify an existing reading tip"); //coming soon
 
         //coming soon; selecting this allows user to specify searching criteria
-        System.out.println("(L)ist all existing reading tips"); 
+        io.print("(L)ist all existing reading tips"); 
 
-        System.out.println("(Q)uit");
+        io.print("(Q)uit");
     }
     
     private void createReadingTip() {
-        System.out.println("What is the title of the reading tip?");
-        String title = scanner.nextLine();
+        String title = io.readLine("What is the title of the reading tip?");
         printTypes();
-        String type = scanner.nextLine();
+        String type = io.readLine("What kind of reading tip it is?");
         ReadingTip tip = service.createTipWithType(type.toLowerCase(), title);
-        System.out.println(tip.toString());
+        io.print(tip.toString());
     }
     
     private void printTypes() {
-        System.out.println("What kind of reading tip it is?");
-        System.out.println("Options:");
-        System.out.println("Blogpost");
-        System.out.println("Book");
-        System.out.println("Podcast");
-        System.out.println("Video");
+        io.print("What kind of reading tip it is?");
+        io.print("Options:");
+        io.print("Blogpost");
+        io.print("Book");
+        io.print("Podcast");
+        io.print("Video");
     }
 
+    private void listAllReadingTips() throws Exception {
+        service.browseReadingTips();
+    }
+    
+    
     //        ReadingTipService ok = new ReadingTipService();
     //
     //        String type = "book";
