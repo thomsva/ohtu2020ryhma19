@@ -18,7 +18,7 @@
 ## Definition of Done
 
 * User storien hyväksymiskriteerit täyttyvät eli Cucumber-testit menevät läpi
-* Jacocolla mitattu JUnit-testikattavuus vähintään 70 %
+* Jacocolla mitattu JUnit-testikattavuus todettu riittäväksi
 * Koodin tyyli vastaa checkstyle-määrittelyjä
 * Luokat ja metodit dokumentoitu JavaDocilla
 * Käännös ja testit suoritettu virheettä GitHub Actionsissa
