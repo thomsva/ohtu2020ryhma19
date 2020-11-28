@@ -41,20 +41,9 @@ public class ReadingTipService {
      */
     public List<ReadingTip> browseReadingTips() throws Exception {
         List<ReadingTip> tipList = readingTipDao.getAllTips();
-        
-        for (ReadingTip tip : tipList) {
-            System.out.println(tip.toString());
-        }
-        
         return tipList;
     }
 
-    /** Creates ReadingTip with only a type and a title. 
-     *
-     * @param type   The type of the ReadingTip 
-     * @param title  The title of the ReadingTip
-     * @return The new ReadingTip.  
-     */
     private ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;
