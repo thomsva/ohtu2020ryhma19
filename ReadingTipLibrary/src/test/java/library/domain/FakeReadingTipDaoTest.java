@@ -29,4 +29,9 @@ public class FakeReadingTipDaoTest implements ReadingTipDao {
     public List<ReadingTip> getAllTips() throws Exception {
         return readingTips;
     }
+
+    @Override
+    public List<ReadingTip> getTipByAuthor(String author) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

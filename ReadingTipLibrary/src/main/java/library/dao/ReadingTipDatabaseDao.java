@@ -14,7 +14,9 @@ import library.domain.PodcastTip;
 import library.domain.ReadingTip;
 import library.domain.VideoTip;
 
-/** ReadingTipDatabaseDao Class. Used to access ReadingTips in the database. */
+/**
+ * ReadingTipDatabaseDao Class. Used to access ReadingTips in the database.
+ */
 public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     private String databaseAddress;
@@ -35,7 +37,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
             ResultSet result = stmt.executeQuery("SELECT * FROM ReadingTip");
 
             while (result.next()) {
-                
+
                 String id = result.getString("id");
                 String type = result.getString("type");
                 String title = result.getString("title");
@@ -55,6 +57,34 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
         conn.close();
 
+        return readingTips;
+
+    }
+
+    @Override
+    public List<ReadingTip> getTipByAuthor(String author) throws Exception {
+        Connection conn = DriverManager.getConnection(databaseAddress);
+        List<ReadingTip> readingTips = new ArrayList<>();
+        try {
+            //Statement stmt = conn.createStatement();
+            //ResultSet result = stmt.executeQuery("SELECT * from ReadingTip WHERE author=?");
+            PreparedStatement p = conn.prepareStatement("SELECT hinta FROM Tuotteet WHERE nimi=?");
+            p.setString(1, author);
+
+            ResultSet result = p.executeQuery();
+
+            while (result.next()) {
+                String id = result.getString("id");
+                String type = result.getString("type");
+                String title = result.getString("title");
+                String tipAuthor = result.getString("author");
+
+                ReadingTip readingtip = createTipWithType(type, title);
+                readingTips.add(readingtip);
+            }
+        } catch (Exception e) {
+
+        }
         return readingTips;
 
     }
@@ -87,8 +117,9 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     //        stmt.execute();
     //        conn.close();
     //    }
-
-    /** Creates ReadingTip table if it doesn't exist. */
+    /**
+     * Creates ReadingTip table if it doesn't exist.
+     */
     public void createSchemaIfNotExists(Connection conn) throws SQLException {
 
         Statement stmt = conn.createStatement();
@@ -96,14 +127,16 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         try {
 
             stmt.execute(
-                "CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title)");
+                    "CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title)");
         } catch (Exception e) {
             System.out.println("Database schema already exists.");
         }
 
     }
 
-    /** Creates new ReadingTip. */
+    /**
+     * Creates new ReadingTip.
+     */
     public ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;

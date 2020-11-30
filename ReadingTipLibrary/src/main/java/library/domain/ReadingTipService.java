@@ -8,7 +8,9 @@ import java.util.List;
 import library.dao.ReadingTipDao;
 import library.dao.ReadingTipDatabaseDao;
 
-/** Provides methods for handling ReadingTips. */
+/**
+ * Provides methods for handling ReadingTips.
+ */
 public class ReadingTipService {
 
     private ReadingTipDao readingTipDao;
@@ -20,10 +22,10 @@ public class ReadingTipService {
     /**
      * Creates ReadingTip.
      *
-     * @param type   The type of the ReadingTip 
-     * @param title  title
-     * @param info1  The content of this field will depend on the type. 
-     * @param info2  The content of this field will depend on the type. 
+     * @param type The type of the ReadingTip
+     * @param title title
+     * @param info1 The content of this field will depend on the type.
+     * @param info2 The content of this field will depend on the type.
      */
     public ReadingTip createTip(String type, String title) throws Exception {
         ReadingTip rt = createTipWithType(type, title);
@@ -33,15 +35,21 @@ public class ReadingTipService {
         return rt;
     }
 
-
     /**
      * Lists all ReadingTips.
      *
-     * @return A list of all ReadingTips.  
+     * @return A list of all ReadingTips.
      */
     public List<ReadingTip> browseReadingTips() throws Exception {
         List<ReadingTip> tipList = readingTipDao.getAllTips();
         return tipList;
+    }
+
+    public List<ReadingTip> findTipByAuthor(String author) throws Exception {
+        List<ReadingTip> tipList = readingTipDao.getTipByAuthor(author);
+
+        return tipList;
+
     }
 
     private ReadingTip createTipWithType(String type, String title) {
