@@ -9,7 +9,7 @@
 [Product Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/2)
 
 
-## Doukumentaatio
+## Dokumentaatio
 
 [Tuntilista](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/Tunnit.md)
 
