@@ -114,7 +114,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
             Connection conn = DriverManager.getConnection(databaseAddress);
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
             stmt.setInt(1, Integer.parseInt(id));
-            stmt.execute();
+            stmt.executeUpdate();
             conn.close();
         }
     /**
