@@ -44,12 +44,33 @@ public class ReadingTipUi {
                 listSearchResults();
             } else if (command.equals("C")) {
                 io.print("This option is coming soon. Thank you for being patient!");
-            } else if (command.equals("Q")) {
+            } 
+            
+            else if (command.equals("D")) {
+                removeTip();
+            }
+            
+            else if (command.equals("Q")) {
                 break;
             } else {
                 io.print("Oops, command not existing! Try again.");
             }
         }
+    }
+    
+    private void removeTip() throws Exception {
+        String id = io.readLine("What is the id of the reading tip you want to delete?");
+        printTypes();
+        service.removeTip(id);
+        
+    }
+   
+    private void createReadingTip() throws Exception {
+        String title = io.readLine("What is the title of the reading tip?");
+        printTypes();
+        String type = io.readLine("What kind of reading tip it is?");
+        ReadingTip tip = service.createTip(type.toLowerCase(), title);
+        io.print(tip.toString());
     }
 
     private void printOptions() {
@@ -60,15 +81,7 @@ public class ReadingTipUi {
         io.print("(C)hange search criteria"); //coming soon
         io.print("(Q)uit");
     }
-
-    private void createReadingTip() throws Exception {
-        String title = io.readLine("What is the title of the reading tip?");
-        printTypes();
-        String type = io.readLine("What kind of reading tip it is?");
-        ReadingTip tip = service.createTip(type.toLowerCase(), title);
-        io.print(tip.toString());
-    }
-
+    
     private void printTypes() {
         io.print("What kind of reading tip it is?");
         io.print("Options:");

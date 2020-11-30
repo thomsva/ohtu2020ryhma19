@@ -68,4 +68,8 @@ public class ReadingTipService {
 
         return tip;
     }
+
+    public void removeTip(String id) throws Exception {
+        readingTipDao.removeTip(id);
+    }
 }

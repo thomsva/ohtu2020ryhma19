@@ -108,15 +108,15 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         conn.close();
     }
 
-    //    @Override
-    //    public void removeTip(String id) throws Exception {
-    //        
-    //        Connection conn = DriverManager.getConnection(databaseAddress);
-    //        PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
-    //        stmt.setInt(1, Integer.parseInt(id));
-    //        stmt.execute();
-    //        conn.close();
-    //    }
+        @Override
+        public void removeTip(String id) throws Exception {
+            
+            Connection conn = DriverManager.getConnection(databaseAddress);
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
+            stmt.setInt(1, Integer.parseInt(id));
+            stmt.execute();
+            conn.close();
+        }
     /**
      * Creates ReadingTip table if it doesn't exist.
      */
