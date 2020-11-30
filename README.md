@@ -4,12 +4,12 @@
 
 ## Backlogit
 
-[Sprint Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/1)
+[Sprint Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/4)
 
 [Product Backlog](https://github.com/Muisku/ohtu2020ryhma19/projects/2)
 
 
-## Doukumentaatio
+## Dokumentaatio
 
 [Tuntilista](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/Tunnit.md)
 
