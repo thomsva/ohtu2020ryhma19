@@ -3,7 +3,7 @@ package library.domain;
 /** A ReadingTip of type BookTip. */
 public class BookTip implements ReadingTip {
 
-    private String title;
+    private final String title;
     private String[] tags;
     private String[] relatedCourses;
     private String author;
