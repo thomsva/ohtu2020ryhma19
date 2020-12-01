@@ -91,7 +91,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         createSchemaIfNotExists(conn);
 
         PreparedStatement stmt = conn.prepareStatement(
-                "INSERT INTO ReadingTip (type,title,info1,info2) "
+                "INSERT INTO ReadingTip (type, title, info1, info2) "
                 + "VALUES (?,?,?,?)");
 
         stmt.setString(1, readingTip.getType());
@@ -118,13 +118,29 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     @Override
     public void modifyTip(String id, String newTitle, String newInfo1, String newInfo2) throws Exception {
         Connection conn = DriverManager.getConnection(databaseAddress);
+        ReadingTip tip = getOneTip(id);
         
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip "
-                   + "SET (title,info1,info2) VALUES (?,?,?) WHERE id = ?");
-            stmt.setString(1, newTitle);
-            stmt.setString(2, newInfo1);
-            stmt.setString(3, newInfo2);
+                   + "SET (title, info1, info2) VALUES (?,?,?) WHERE id = ?");
+            if (newTitle.isEmpty()) {
+                stmt.setString(1, tip.getTitle());
+            } else {
+                stmt.setString(1, newTitle);
+            }
+            
+            if (newInfo1.isEmpty()) {
+                stmt.setString(2, tip.getMoreInfo1());
+            } else {
+                stmt.setString(2, newInfo1);
+            }
+            
+            if (newInfo2.isEmpty()) {
+                stmt.setString(3, tip.getMoreInfo2());
+            } else {
+                stmt.setString(3, newInfo2);
+            }
+            
             stmt.setInt(4, Integer.parseInt(id));
             stmt.executeUpdate();
         } catch (Exception e) {

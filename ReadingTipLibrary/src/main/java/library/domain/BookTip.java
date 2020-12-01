@@ -62,7 +62,7 @@ public class BookTip implements ReadingTip {
     
     @Override
     public String toString() {
-        return "Author: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
+        return "ID: " + id + "\nAuthor: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
     }
 
     @Override
