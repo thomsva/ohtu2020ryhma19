@@ -118,31 +118,29 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     @Override
     public void modifyTip(String id, String newTitle, String newInfo1, String newInfo2) throws Exception {
         Connection conn = DriverManager.getConnection(databaseAddress);
-        ReadingTip tip = getOneTip(id);
         
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip "
-                   + "SET (title, info1, info2) VALUES (?,?,?) WHERE id = ?");
-            if (newTitle.isEmpty()) {
-                stmt.setString(1, tip.getTitle());
-            } else {
+            if (!newTitle.isEmpty()) { 
+                PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip SET title = ? WHERE id = ?");
                 stmt.setString(1, newTitle);
+                stmt.setInt(2, Integer.parseInt(id));
+                stmt.executeUpdate();
+            }
+
+            if (!newInfo1.isEmpty()) { 
+                PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip SET info1 = ? WHERE id = ?");
+                stmt.setString(1, newInfo1);
+                stmt.setInt(2, Integer.parseInt(id));
+                stmt.executeUpdate();
+            }
+
+            if (!newInfo2.isEmpty()) { 
+                PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip SET info2 = ? WHERE id = ?");
+                stmt.setString(1, newInfo2);
+                stmt.setInt(2, Integer.parseInt(id));
+                stmt.executeUpdate();
             }
             
-            if (newInfo1.isEmpty()) {
-                stmt.setString(2, tip.getMoreInfo1());
-            } else {
-                stmt.setString(2, newInfo1);
-            }
-            
-            if (newInfo2.isEmpty()) {
-                stmt.setString(3, tip.getMoreInfo2());
-            } else {
-                stmt.setString(3, newInfo2);
-            }
-            
-            stmt.setInt(4, Integer.parseInt(id));
-            stmt.executeUpdate();
         } catch (Exception e) {
         }
         conn.close();
