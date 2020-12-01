@@ -17,4 +17,4 @@ bin
 
 # Ignore database
 
-ReadingTipLibrary/readingtip.db
+readingtip.db
