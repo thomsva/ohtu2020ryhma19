@@ -14,5 +14,5 @@ public interface ReadingTipDao {
 
     List<ReadingTip> getAllTips() throws Exception;
 
-    List<ReadingTip> searchTip(String searchTerm,String searchType) throws Exception;
+    List<ReadingTip> searchTip(String searchTerm,String searchField) throws Exception;
 }

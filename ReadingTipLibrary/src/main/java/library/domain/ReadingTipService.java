@@ -45,8 +45,8 @@ public class ReadingTipService {
         return tipList;
     }
 
-    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
-        List<ReadingTip> tipList = readingTipDao.searchTip(searchTerm, searchType);
+    public List<ReadingTip> searchTip(String searchTerm, String searchField) throws Exception {
+        List<ReadingTip> tipList = readingTipDao.searchTip(searchTerm, searchField);
         return tipList;
     }
 

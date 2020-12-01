@@ -64,11 +64,11 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     }
 
     @Override
-    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
+    public List<ReadingTip> searchTip(String searchTerm, String searchField) throws Exception {
         Connection conn = DriverManager.getConnection(databaseAddress);
         List<ReadingTip> readingTips = new ArrayList<>();
         try {
-            String stmt = createStatementByTerm(searchTerm, searchType);
+            String stmt = createStatementByField(searchTerm, searchField);
             PreparedStatement p = conn.prepareStatement(stmt);
             p.setString(1, searchTerm);
 
@@ -95,20 +95,20 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     }
 
-    private String createStatementByTerm(String searchTerm, String searchType) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("SELECT * FROM ReadingTip where ");
-        if (searchType.equals("Type")) {
-            builder.append("type=?");
+    private String createStatementByField(String searchTerm, String searchField) {
+        StringBuilder stmt = new StringBuilder();
+        stmt.append("SELECT * FROM ReadingTip where ");
+        if (searchField.equals("type")) {
+            stmt.append("type = ?");
         }
-        /*if(searchType.equals("author")){
+        /*if(searchField.equals("author")){
             builder.append("type=?");
         }
          */
-        if (searchType.equals("Title")) {
-            builder.append("title=?");
+        if (searchField.equals("title")) {
+            stmt.append("title = ?");
         }
-        return builder.toString();
+        return stmt.toString();
 
     }
 
