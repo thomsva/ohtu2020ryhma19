@@ -39,7 +39,7 @@ public class ReadingTipUi {
             if (command.equals("A")) {
                 createReadingTip();
             } else if (command.equals("M")) {
-                io.print("This option is coming soon. Thank you for being patient!");
+                modifyTip();
             } else if (command.equals("L")) {
                 getAllTips();
             } else if (command.equals("S")) {
@@ -56,9 +56,24 @@ public class ReadingTipUi {
 
     private void removeTip() throws Exception {
         String id = io.readLine("What is the id of the reading tip you want to delete?");
-        printTypes();
-        service.removeTip(id);
-
+        if (getOneTip(id) == null) {
+            io.print("Reading tip doesn't exist.");
+        } else {
+            service.removeTip(id);
+        }
+    }
+    
+    private void modifyTip() throws Exception {
+        String id = io.readLine("What is the id of the reading tip you want to modify?");
+        if (getOneTip(id) == null) {
+            io.print("Reading tip doesn't exist.");
+        } else {
+            io.print(getOneTip(id).toString());
+            String newTitle = io.readLine("What is the new title of the reading tip?");
+            String newInfo1 = io.readLine("What is the new info1?");
+            String newInfo2 = io.readLine("What is the new info2?");
+            service.modifyTip(id, newTitle, newInfo1, newInfo2);
+        }   
     }
 
     private void createReadingTip() throws Exception {
@@ -114,12 +129,15 @@ public class ReadingTipUi {
     }
 
     private void getAllTips() throws Exception {
-
         searchResults = service.browseReadingTips();
         listSearchResults();
-
     }
-
+    
+    private ReadingTip getOneTip(String id) throws Exception {
+        ReadingTip tip = service.getOneTip(id);
+        return tip;
+    }
+    
     private void searchTip() throws Exception {
         printSearchFields();
         String searchField = io.readLine("");

@@ -45,11 +45,26 @@ public class ReadingTipService {
         return tipList;
     }
 
+    
     public List<ReadingTip> searchTip(String searchTerm, String searchField) throws Exception {
         List<ReadingTip> tipList = readingTipDao.searchTip(searchTerm, searchField);
         return tipList;
     }
+    
+    public ReadingTip getOneTip(String id) throws Exception {
+        ReadingTip readingTip = readingTipDao.getOneTip(id);
+        return readingTip;
+    }
 
+    public void removeTip(String id) throws Exception {
+        readingTipDao.removeTip(id);
+    }
+    
+    
+    public void modifyTip(String id, String newTitle, String newInfo1, String newInfo2) throws Exception {
+        readingTipDao.modifyTip(id, newTitle, newInfo1, newInfo2);
+    }
+    
     private ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;
@@ -67,7 +82,4 @@ public class ReadingTipService {
         return tip;
     }
 
-    public void removeTip(String id) throws Exception {
-        readingTipDao.removeTip(id);
-    }
 }

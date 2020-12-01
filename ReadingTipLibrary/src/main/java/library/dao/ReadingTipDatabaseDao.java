@@ -32,26 +32,9 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         List<ReadingTip> readingTips = new ArrayList<>();
 
         try {
-
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery("SELECT * FROM ReadingTip");
-
-            while (result.next()) {
-
-                int id = result.getInt("id");
-                String type = result.getString("type");
-                String title = result.getString("title");
-
-                ReadingTip readingTip = createTipWithType(type, title);
-
-                String info1 = result.getString("info1");
-                String info2 = result.getString("info2");
-
-                readingTip.setId(id);
-                readingTip.setMoreInfo1(info1);
-                readingTip.setMoreInfo2(info2);
-                readingTips.add(readingTip);
-            }
+            readingTips = createListFromResult(result);
 
         } catch (Exception e) {
             System.out.println("Database is empty.");
@@ -68,49 +51,38 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         Connection conn = DriverManager.getConnection(databaseAddress);
         List<ReadingTip> readingTips = new ArrayList<>();
         try {
-            String stmt = createStatementByField(searchTerm, searchField);
+            String stmt = createStatementByField(searchField);
             PreparedStatement p = conn.prepareStatement(stmt);
             p.setString(1, searchTerm);
 
             ResultSet result = p.executeQuery();
-
-            while (result.next()) {
-
-                int id = result.getInt("id");
-                String type = result.getString("type");
-                String title = result.getString("title");
-                String info1 = result.getString("info1");
-                String info2 = result.getString("info2");
-
-                ReadingTip readingtip = createTipWithType(type, title);
-                readingtip.setId(id);
-                readingtip.setMoreInfo1(info1);
-                readingtip.setMoreInfo2(info2);
-                readingTips.add(readingtip);
-            }
+            readingTips = createListFromResult(result);
         } catch (Exception e) {
 
         }
         return readingTips;
-
+    }
+    
+    
+    @Override
+    public ReadingTip getOneTip(String id) throws Exception {
+        Connection conn = DriverManager.getConnection(databaseAddress);
+        List<ReadingTip> readingTips = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ReadingTip WHERE id = ?");
+            stmt.setInt(1, Integer.parseInt(id));
+            
+            ResultSet result = stmt.executeQuery();
+            readingTips = createListFromResult(result);
+        } catch (Exception e) {
+        }
+        
+        if (readingTips.size() == 1) {
+            return readingTips.get(0);
+        }
+        return null;
     }
 
-    private String createStatementByField(String searchTerm, String searchField) {
-        StringBuilder stmt = new StringBuilder();
-        stmt.append("SELECT * FROM ReadingTip where ");
-        if (searchField.equals("type")) {
-            stmt.append("type = ?");
-        }
-        /*if(searchField.equals("author")){
-            builder.append("type=?");
-        }
-         */
-        if (searchField.equals("title")) {
-            stmt.append("title = ?");
-        }
-        return stmt.toString();
-
-    }
 
     @Override
     public void addTip(ReadingTip readingTip) throws Exception {
@@ -130,6 +102,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
         conn.close();
     }
+    
 
     @Override
     public void removeTip(String id) throws Exception {
@@ -140,6 +113,25 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         stmt.executeUpdate();
         conn.close();
     }
+    
+    
+    @Override
+    public void modifyTip(String id, String newTitle, String newInfo1, String newInfo2) throws Exception {
+        Connection conn = DriverManager.getConnection(databaseAddress);
+        
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip "
+                   + "SET (title,info1,info2) VALUES (?,?,?) WHERE id = ?");
+            stmt.setString(1, newTitle);
+            stmt.setString(2, newInfo1);
+            stmt.setString(3, newInfo2);
+            stmt.setInt(4, Integer.parseInt(id));
+            stmt.executeUpdate();
+        } catch (Exception e) {
+        }
+        conn.close();
+    }
+    
 
     /**
      * Creates ReadingTip table if it doesn't exist.
@@ -177,5 +169,42 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
         return tip;
     }
+    
+        
+    private String createStatementByField(String searchField) {
+        StringBuilder stmt = new StringBuilder();
+        stmt.append("SELECT * FROM ReadingTip where ");
+        if (searchField.equals("type")) {
+            stmt.append("type = ?");
+        }
+        /*if(searchField.equals("author")){
+            builder.append("author=?");
+        }
+         */
+        if (searchField.equals("title")) {
+            stmt.append("title = ?");
+        }
+        return stmt.toString();
+    }
+    
+    
+    private List<ReadingTip> createListFromResult(ResultSet result) throws Exception {
+        List<ReadingTip> readingTips = new ArrayList<>();
+        while (result.next()) {
+                int id = result.getInt("id");
+                String type = result.getString("type");
+                String title = result.getString("title");
+                String info1 = result.getString("info1");
+                String info2 = result.getString("info2");
+
+                ReadingTip readingtip = createTipWithType(type, title);
+                readingtip.setId(id);
+                readingtip.setMoreInfo1(info1);
+                readingtip.setMoreInfo2(info2);
+                readingTips.add(readingtip);
+            }
+        return readingTips;
+    }
+
 
 }
