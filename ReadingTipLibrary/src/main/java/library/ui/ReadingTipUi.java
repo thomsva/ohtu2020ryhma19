@@ -13,6 +13,7 @@ public class ReadingTipUi {
     ReadingTipService service;
     private IO io;
     private List<ReadingTip> searchResults;
+    private List<ReadingTip> allTips;
 
     public ReadingTipUi(IO io) {
         this.io = io;
@@ -24,8 +25,8 @@ public class ReadingTipUi {
     public void start() throws Exception {
 
         service = new ReadingTipService();
-        this.searchResults = service.browseReadingTips();
 
+        this.allTips = service.browseReadingTips();
         io.print("Hello user!");
 
         while (true) {
@@ -41,11 +42,13 @@ public class ReadingTipUi {
             } else if (command.equals("M")) {
                 io.print("This option is coming soon. Thank you for being patient!");
             } else if (command.equals("L")) {
-                listSearchResults();
+                listSearchResults(allTips);
             } else if (command.equals("C")) {
                 io.print("This option is coming soon. Thank you for being patient!");
             } else if (command.equals("D")) {
                 removeTip();
+            } else if (command.equals("S")) {
+                searchTip();
             } else if (command.equals("Q")) {
                 break;
             } else {
@@ -70,11 +73,11 @@ public class ReadingTipUi {
 
         io.print(tip.toString());
     }
-    
+
     private String[] askMoreInfoByType(String type) {
-        
+
         String[] additionalInfo = new String[2];
-        
+
         if (type.equals("book")) {
             additionalInfo[0] = io.readLine("Who is the author?");
             additionalInfo[1] = io.readLine("What is the ISBN number?");
@@ -82,7 +85,7 @@ public class ReadingTipUi {
             additionalInfo[0] = "---";
             additionalInfo[1] = "---";
         }
-        
+
         return additionalInfo;
     }
 
@@ -93,6 +96,7 @@ public class ReadingTipUi {
         io.print("(L)ist search result"); //currently lists all
         io.print("(D)delete tip"); //delete tip
         io.print("(C)hange search criteria"); //coming soon
+        io.print("(S)earch reading tips"); //coming soon
         io.print("(Q)uit");
     }
 
@@ -105,10 +109,26 @@ public class ReadingTipUi {
         io.print("Video");
     }
 
-    private void listSearchResults() throws Exception {
-        for (int i = 0; i < searchResults.size(); i++) {
+    private void searchTip() throws Exception {
+        printSearchTypes();
+        String searchType = io.readLine("Choose search type");
+
+        String SearchTerm = io.readLine("Give your searchterm");
+
+        searchResults = service.searchTip(SearchTerm, searchType);
+        listSearchResults(searchResults);
+    }
+
+    private void printSearchTypes() {
+        io.print("Type");
+        io.print("Title");
+
+    }
+
+    private void listSearchResults(List list) throws Exception {
+        for (int i = 0; i < list.size(); i++) {
             io.print("Nr: " + i);
-            io.print(searchResults.get(i).toString());
+            io.print(list.get(i).toString());
             io.print("---");
         }
     }

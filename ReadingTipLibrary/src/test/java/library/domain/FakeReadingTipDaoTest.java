@@ -30,13 +30,14 @@ public class FakeReadingTipDaoTest implements ReadingTipDao {
         return readingTips;
     }
 
+
     @Override
-    public List<ReadingTip> getTipByAuthor(String author) throws Exception {
+    public void removeTip(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeTip(String id) throws Exception {
+    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

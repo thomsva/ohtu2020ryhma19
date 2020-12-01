@@ -45,11 +45,9 @@ public class ReadingTipService {
         return tipList;
     }
 
-    public List<ReadingTip> findTipByAuthor(String author) throws Exception {
-        List<ReadingTip> tipList = readingTipDao.getTipByAuthor(author);
-
+    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
+        List<ReadingTip> tipList = readingTipDao.searchTip(searchTerm, searchType);
         return tipList;
-
     }
 
     private ReadingTip createTipWithType(String type, String title) {

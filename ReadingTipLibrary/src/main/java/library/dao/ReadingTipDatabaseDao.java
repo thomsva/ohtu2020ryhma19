@@ -46,7 +46,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
                 String info1 = result.getString("info1");
                 String info2 = result.getString("info2");
-                
+
                 readingTip.setId(id);
                 readingTip.setMoreInfo1(info1);
                 readingTip.setMoreInfo2(info2);
@@ -64,19 +64,18 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
     }
 
     @Override
-    public List<ReadingTip> getTipByAuthor(String author) throws Exception {
+    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
         Connection conn = DriverManager.getConnection(databaseAddress);
         List<ReadingTip> readingTips = new ArrayList<>();
         try {
-            //Statement stmt = conn.createStatement();
-            //ResultSet result = stmt.executeQuery("SELECT * from ReadingTip WHERE author=?");
-            PreparedStatement p = conn.prepareStatement("SELECT hinta FROM Tuotteet WHERE nimi=?");
-            p.setString(1, author);
+            String stmt = createStatementByTerm(searchTerm, searchType);
+            PreparedStatement p = conn.prepareStatement(stmt);
+            p.setString(1, searchTerm);
 
             ResultSet result = p.executeQuery();
 
             while (result.next()) {
-                
+
                 int id = result.getInt("id");
                 String type = result.getString("type");
                 String title = result.getString("title");
@@ -93,6 +92,23 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
         }
         return readingTips;
+
+    }
+
+    private String createStatementByTerm(String searchTerm, String searchType) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("SELECT * FROM ReadingTip where ");
+        if (searchType.equals("Type")) {
+            builder.append("type=?");
+        }
+        /*if(searchType.equals("author")){
+            builder.append("type=?");
+        }
+         */
+        if (searchType.equals("Title")) {
+            builder.append("title=?");
+        }
+        return builder.toString();
 
     }
 
@@ -115,15 +131,16 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         conn.close();
     }
 
-        @Override
-        public void removeTip(String id) throws Exception {
-            
-            Connection conn = DriverManager.getConnection(databaseAddress);
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
-            stmt.setInt(1, Integer.parseInt(id));
-            stmt.executeUpdate();
-            conn.close();
-        }
+    @Override
+    public void removeTip(String id) throws Exception {
+
+        Connection conn = DriverManager.getConnection(databaseAddress);
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM ReadingTip WHERE id = ?");
+        stmt.setInt(1, Integer.parseInt(id));
+        stmt.executeUpdate();
+        conn.close();
+    }
+
     /**
      * Creates ReadingTip table if it doesn't exist.
      */
