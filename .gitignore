@@ -1,19 +1,19 @@
 # Ignore Gradle project-specific cache directory
 
-.gradle
-.nb-gradle
+.gradle/
+.nb-gradle/
 
 # Ignore Gradle build output directory
 
-build
+build/
 
-# Ignore bin folder
+# Ignore bin directory
 
-bin
+bin/
 
 # Ignore Eclipse settings
 
-.settings
+.settings/
 
 # Ignore database
 
