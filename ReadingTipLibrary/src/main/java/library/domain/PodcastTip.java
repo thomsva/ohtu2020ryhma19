@@ -1,15 +1,18 @@
 package library.domain;
 
-/** A ReadingTip of type PodcastTip. */
+/**
+ * A ReadingTip of type PodcastTip.
+ */
 public class PodcastTip implements ReadingTip {
 
+    private int id;
     private String title;
     private String author;
     private String podcastName;
     private String[] tags;
     private String[] relatedCourses;
     private final String type = "podcast";
-    
+
     public PodcastTip(String title) {
         this.title = title;
     }
@@ -57,6 +60,21 @@ public class PodcastTip implements ReadingTip {
     @Override
     public String getMoreInfo2() {
         return this.podcastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Author: " + author + "\nPodcast name: " + podcastName + "\nTitle: " + title + "\nType: " + type;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

@@ -49,7 +49,7 @@ public class ReadingTipUi {
             } else if (command.equals("Q")) {
                 break;
             } else {
-                io.print("Oops, command not existing! Try again.");
+                io.print("Oops, command does not exist! Try again.");
             }
         }
     }
@@ -65,8 +65,25 @@ public class ReadingTipUi {
         String title = io.readLine("What is the title of the reading tip?");
         printTypes();
         String type = io.readLine("What kind of reading tip it is?");
-        ReadingTip tip = service.createTip(type.toLowerCase(), title);
+        String[] additionalInfo = askMoreInfoByType(type);
+        ReadingTip tip = service.createTip(type.toLowerCase(), title, additionalInfo[0], additionalInfo[1]);
+
         io.print(tip.toString());
+    }
+    
+    private String[] askMoreInfoByType(String type) {
+        
+        String[] additionalInfo = new String[2];
+        
+        if (type.equals("book")) {
+            additionalInfo[0] = io.readLine("Who is the author?");
+            additionalInfo[1] = io.readLine("What is the ISBN number?");
+        } else {
+            additionalInfo[0] = "---";
+            additionalInfo[1] = "---";
+        }
+        
+        return additionalInfo;
     }
 
     private void printOptions() {

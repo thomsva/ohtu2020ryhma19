@@ -38,16 +38,18 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
             while (result.next()) {
 
-                String id = result.getString("id");
+                int id = result.getInt("id");
                 String type = result.getString("type");
                 String title = result.getString("title");
 
                 ReadingTip readingTip = createTipWithType(type, title);
 
-//                String info1 = result.getString("info1");
-//                String info2 = result.getString("info2");
-//                readingTip.setMoreInfo1(info1);
-//                readingTip.setMoreInfo2(info2);
+                String info1 = result.getString("info1");
+                String info2 = result.getString("info2");
+                
+                readingTip.setId(id);
+                readingTip.setMoreInfo1(info1);
+                readingTip.setMoreInfo2(info2);
                 readingTips.add(readingTip);
             }
 
@@ -74,12 +76,17 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
             ResultSet result = p.executeQuery();
 
             while (result.next()) {
-                String id = result.getString("id");
+                
+                int id = result.getInt("id");
                 String type = result.getString("type");
                 String title = result.getString("title");
-                String tipAuthor = result.getString("author");
+                String info1 = result.getString("info1");
+                String info2 = result.getString("info2");
 
                 ReadingTip readingtip = createTipWithType(type, title);
+                readingtip.setId(id);
+                readingtip.setMoreInfo1(info1);
+                readingtip.setMoreInfo2(info2);
                 readingTips.add(readingtip);
             }
         } catch (Exception e) {
@@ -96,13 +103,13 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         createSchemaIfNotExists(conn);
 
         PreparedStatement stmt = conn.prepareStatement(
-                "INSERT INTO ReadingTip (type,title) "
-                + "VALUES (?,?)");
+                "INSERT INTO ReadingTip (type,title,info1,info2) "
+                + "VALUES (?,?,?,?)");
 
         stmt.setString(1, readingTip.getType());
         stmt.setString(2, readingTip.getTitle());
-//        stmt.setString(3, readingTip.getMoreInfo1());
-//        stmt.setString(4, readingTip.getMoreInfo2());
+        stmt.setString(3, readingTip.getMoreInfo1());
+        stmt.setString(4, readingTip.getMoreInfo2());
         stmt.execute();
 
         conn.close();
@@ -127,7 +134,7 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         try {
 
             stmt.execute(
-                    "CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title)");
+                    "CREATE TABLE ReadingTip (id INTEGER PRIMARY KEY, type, title, info1, info2)");
         } catch (Exception e) {
             System.out.println("Database schema already exists.");
         }
