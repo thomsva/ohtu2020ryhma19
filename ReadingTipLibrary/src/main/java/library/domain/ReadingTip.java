@@ -3,6 +3,10 @@ package library.domain;
 /** ReadingTip interface, used to define different types of reading tips. */
 public interface ReadingTip {
     
+    int getId();
+    
+    void setId(int id);
+    
     String getType();
 
     String getTitle();

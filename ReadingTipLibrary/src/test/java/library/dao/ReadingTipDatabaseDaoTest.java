@@ -5,7 +5,6 @@ package library.dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.ArrayList;
 import java.util.List;
 import library.dao.ReadingTipDatabaseDao;
@@ -45,7 +44,22 @@ public class ReadingTipDatabaseDaoTest implements ReadingTipDao {
     }
 
     @Override
-    public List<ReadingTip> getTipByAuthor(String author) throws Exception {
+    public void removeTip(String id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ReadingTip> searchTip(String searchTerm, String searchType) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modifyTip(String id, String title, String info1, String info2) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ReadingTip getOneTip(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

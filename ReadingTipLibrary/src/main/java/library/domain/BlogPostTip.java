@@ -4,6 +4,7 @@ package library.domain;
 /** A ReadingTip of type BlogPostTip. */
 public class BlogPostTip implements ReadingTip {
     
+    private int id;
     private String title;
     private String author;
     private String url;
@@ -59,5 +60,21 @@ public class BlogPostTip implements ReadingTip {
     public String getMoreInfo2() {
         return url;
     }
+    
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nTitle: " + title + "\nAuthor: " + author + "\nURL: " + url + "\nType: " + type;
+    }
+
+    @Override
+    public int getId() {
+       return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
     
 }

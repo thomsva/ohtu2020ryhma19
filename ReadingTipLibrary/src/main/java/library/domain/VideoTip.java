@@ -1,16 +1,18 @@
-
 package library.domain;
 
-/** A ReadingTip of type VideoTip. */
+/**
+ * A ReadingTip of type VideoTip.
+ */
 public class VideoTip implements ReadingTip {
-    
+
+    private int id;
     private String title;
     private String url;
     private String comment;
     private String[] tags;
     private String[] relatedCourses;
     private final String type = "video";
-    
+
     public VideoTip(String title) {
         this.title = title;
     }
@@ -59,5 +61,20 @@ public class VideoTip implements ReadingTip {
     public String getMoreInfo2() {
         return comment;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nTitle: " + title + "\nURL: " + url + "\nType: " + type;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
