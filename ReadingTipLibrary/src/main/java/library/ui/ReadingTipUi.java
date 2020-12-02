@@ -150,9 +150,9 @@ public class ReadingTipUi {
 
     private void listSearchResults() throws Exception {
         for (int i = 1; i <= searchResults.size(); i++) {
-            io.print("Nr: " + i);
+            //io.print("Nr: " + i);
             io.print(searchResults.get(i-1).toString());
-            io.print("---");
+            io.print("");
         }
     }
 }
