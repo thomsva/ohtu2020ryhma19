@@ -187,7 +187,6 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
 
     @Override
     public void markAsRead(String id) {
-        System.out.println("222");
         try {
             Connection conn = DriverManager.getConnection(databaseAddress);
             PreparedStatement stmt = conn.prepareStatement("UPDATE ReadingTip SET read = 1 WHERE id = ?");

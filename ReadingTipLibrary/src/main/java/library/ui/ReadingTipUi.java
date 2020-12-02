@@ -48,6 +48,8 @@ public class ReadingTipUi {
                 removeTip();
             } else if (command.equals("R")) {
                 markAsRead();
+            } else if (command.equals("U")) {
+                markAsUnread();
             } else if (command.equals("Q")) {
                 break;
             } else {
@@ -77,7 +79,7 @@ public class ReadingTipUi {
             io.print(getOneTip(id).toString());
         }
     }
-    
+
     private void markAsRead() throws Exception {
         String id = io.readLine("What is the id of the reading tip you want to mark as read?");
         if (getOneTip(id) == null) {
@@ -87,6 +89,17 @@ public class ReadingTipUi {
             io.print(getOneTip(id).toString());
         }
     }
+    
+    private void markAsUnread() throws Exception {
+        String id = io.readLine("What is the id of the reading tip you want to mark as unread?");
+        if (getOneTip(id) == null) {
+            io.print("Reading tip doesn't exist.");
+        } else {
+            service.markAsUnread(id);
+            io.print(getOneTip(id).toString());
+        }
+    }
+
 
     private void createReadingTip() throws Exception {
         String title = io.readLine("What is the title of the reading tip?");
@@ -120,7 +133,7 @@ public class ReadingTipUi {
         io.print("(D)elete a reading tip");
         io.print("(L)ist all reading tips");
         io.print("(S)earch reading tips by criteria");
-        io.print("Mark reading tip as (R)ead");
+        io.print("Mark reading tip as (R)ead or (U)nread");
         io.print("(Q)uit");
     }
 

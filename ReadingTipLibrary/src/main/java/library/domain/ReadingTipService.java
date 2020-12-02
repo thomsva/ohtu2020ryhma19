@@ -66,9 +66,13 @@ public class ReadingTipService {
     }
     
     public void markAsRead(String id){
-        System.out.println("111");
         readingTipDao.markAsRead(id);
     }
+    
+    public void markAsUnread(String id){
+        readingTipDao.markAsUnread(id);
+    }
+    
     
     private ReadingTip createTipWithType(String type, String title) {
 
