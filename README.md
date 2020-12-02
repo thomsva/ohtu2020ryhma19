@@ -15,6 +15,7 @@
 
 [Sovellusarkkitehtuuri](Dokumentaatio/Sovellusarkkitehtuuri.md)
 
+[Burndown Chart Sprint 1](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/BurndownSprint1.png)
 ## Definition of Done
 
 * User storien hyväksymiskriteerit täyttyvät eli Cucumber-testit menevät läpi
@@ -29,3 +30,4 @@ Lataa ohjelmakoodi GitHubista ja avaa asennuskansio terminaalilla. Kirjoita seur
 * cd ReadingTipLibrary
 * ./gradlew shadowJar
 * java -jar build/libs/ReadingTipLibrary-all.jar
+

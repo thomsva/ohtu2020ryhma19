@@ -63,7 +63,7 @@ public class BlogPostTip implements ReadingTip {
     
     @Override
     public String toString() {
-        return "Title: " + title + "\nAuthor: " + author + "\nURL: " + url + "\nType: " + type;
+        return "ID: " + id + "\nTitle: " + title + "\nAuthor: " + author + "\nURL: " + url + "\nType: " + type;
     }
 
     @Override

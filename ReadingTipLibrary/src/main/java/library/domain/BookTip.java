@@ -3,8 +3,9 @@ package library.domain;
 /** A ReadingTip of type BookTip. */
 public class BookTip implements ReadingTip {
 
+
     private int id;
-    private String title;
+    private final String title;
     private String[] tags;
     private String[] relatedCourses;
     private String author;
@@ -62,7 +63,7 @@ public class BookTip implements ReadingTip {
     
     @Override
     public String toString() {
-        return "Author: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
+        return "ID: " + id + "\nAuthor: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
     }
 
     @Override

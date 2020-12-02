@@ -70,9 +70,9 @@ public class ReadingTipUi {
         } else {
             io.print(getOneTip(id).toString());
             String newTitle = io.readLine("What is the new title of the reading tip?");
-            String newInfo1 = io.readLine("What is the new info1?");
-            String newInfo2 = io.readLine("What is the new info2?");
-            service.modifyTip(id, newTitle, newInfo1, newInfo2);
+            String[] otherInfo = askMoreInfoByType(getOneTip(id).getType());
+            service.modifyTip(id, newTitle, otherInfo[0], otherInfo[1]);
+            io.print(getOneTip(id).toString());
         }   
     }
 
@@ -83,7 +83,7 @@ public class ReadingTipUi {
         String[] additionalInfo = askMoreInfoByType(type);
         ReadingTip tip = service.createTip(type.toLowerCase(), title, additionalInfo[0], additionalInfo[1]);
 
-        io.print(tip.toString());
+        //io.print(tip.toString());
     }
 
     private String[] askMoreInfoByType(String type) {
@@ -104,8 +104,8 @@ public class ReadingTipUi {
     private void printOptions() {
         io.print("You can...");
         io.print("(A)dd a new reading tip");
-        io.print("(M)odify an existing reading tip"); //coming soon
-        io.print("(D)elete a reading tip"); //delete tip
+        io.print("(M)odify an existing reading tip");
+        io.print("(D)elete a reading tip");
         io.print("(L)ist all reading tips");
         io.print("(S)earch reading tips by criteria");
         io.print("(Q)uit");
@@ -144,15 +144,14 @@ public class ReadingTipUi {
 
         String SearchTerm = io.readLine("Input search term:");
 
-        searchResults = service.searchTip(SearchTerm.toLowerCase(), searchField.toLowerCase());
+        searchResults = service.searchTip(SearchTerm, searchField.toLowerCase());
         listSearchResults();
     }
 
     private void listSearchResults() throws Exception {
-        for (int i = 0; i < searchResults.size(); i++) {
-            io.print("Nr: " + i);
-            io.print(searchResults.get(i).toString());
-            io.print("---");
+        for (int i = 1; i <= searchResults.size(); i++) {
+            io.print(searchResults.get(i-1).toString());
+            io.print("");
         }
     }
 }
