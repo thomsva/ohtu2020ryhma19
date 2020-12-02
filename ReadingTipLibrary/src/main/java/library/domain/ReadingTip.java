@@ -21,8 +21,14 @@ public interface ReadingTip {
     
     void setMoreInfo2(String info);
     
+    void setRead(int read);
+    
+    int getRead (int read);
+    
     String getMoreInfo1();
     
     String getMoreInfo2();
+    
+    
 
 }

@@ -65,6 +65,11 @@ public class ReadingTipService {
         readingTipDao.modifyTip(id, newTitle, newInfo1, newInfo2);
     }
     
+    public void markAsRead(String id){
+        System.out.println("111");
+        readingTipDao.markAsRead(id);
+    }
+    
     private ReadingTip createTipWithType(String type, String title) {
 
         ReadingTip tip;

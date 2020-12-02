@@ -12,6 +12,7 @@ public class PodcastTip implements ReadingTip {
     private String[] tags;
     private String[] relatedCourses;
     private final String type = "podcast";
+    private int read;
 
     public PodcastTip(String title) {
         this.title = title;
@@ -60,6 +61,16 @@ public class PodcastTip implements ReadingTip {
     @Override
     public String getMoreInfo2() {
         return this.podcastName;
+    }
+
+    @Override
+    public void setRead(int read) {
+        this.read = read;
+    }
+
+    @Override
+    public int getRead(int read) {
+        return read;
     }
 
     @Override

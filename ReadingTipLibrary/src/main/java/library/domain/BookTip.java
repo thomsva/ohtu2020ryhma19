@@ -1,8 +1,9 @@
 package library.domain;
 
-/** A ReadingTip of type BookTip. */
+/**
+ * A ReadingTip of type BookTip.
+ */
 public class BookTip implements ReadingTip {
-
 
     private int id;
     private final String title;
@@ -11,6 +12,7 @@ public class BookTip implements ReadingTip {
     private String author;
     private String isbn;
     private final String type = "book";
+    private int read;
 
     public BookTip(String title) {
         this.title = title;
@@ -60,15 +62,26 @@ public class BookTip implements ReadingTip {
     public String getMoreInfo2() {
         return isbn;
     }
-    
+
+    @Override
+    public void setRead(int read) {
+        this.read = read;
+    }
+
+    @Override
+    public int getRead(int read) {
+        return read;
+    }
+
     @Override
     public String toString() {
-        return "ID: " + id + "\nAuthor: " + author + "\nTitle: " + title + "\nType: " + type + "\nISBN: " + isbn;
+        return "ID: " + id + "\nAuthor: " + author + "\nTitle: " + title
+                + "\nType: " + type + "\nISBN: " + isbn + "\nRead: " + read;
     }
 
     @Override
     public int getId() {
-       return id;
+        return id;
     }
 
     @Override

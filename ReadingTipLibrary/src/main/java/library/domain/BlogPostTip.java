@@ -11,6 +11,7 @@ public class BlogPostTip implements ReadingTip {
     private String[] tags;
     private String[] relatedCourses;
     private final String type = "blogpost";
+    private int read;
     
     public BlogPostTip(String title) {
         this.title = title;
@@ -59,6 +60,15 @@ public class BlogPostTip implements ReadingTip {
     @Override
     public String getMoreInfo2() {
         return url;
+    }
+     @Override
+    public void setRead(int read) {
+        this.read = read;
+    }
+
+    @Override
+    public int getRead(int read) {
+        return read;
     }
     
     @Override

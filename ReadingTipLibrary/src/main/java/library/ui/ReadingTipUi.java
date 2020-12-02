@@ -46,6 +46,8 @@ public class ReadingTipUi {
                 searchTip();
             } else if (command.equals("D")) {
                 removeTip();
+            } else if (command.equals("R")) {
+                markAsRead();
             } else if (command.equals("Q")) {
                 break;
             } else {
@@ -62,7 +64,7 @@ public class ReadingTipUi {
             service.removeTip(id);
         }
     }
-    
+
     private void modifyTip() throws Exception {
         String id = io.readLine("What is the id of the reading tip you want to modify?");
         if (getOneTip(id) == null) {
@@ -73,7 +75,17 @@ public class ReadingTipUi {
             String[] otherInfo = askMoreInfoByType(getOneTip(id).getType());
             service.modifyTip(id, newTitle, otherInfo[0], otherInfo[1]);
             io.print(getOneTip(id).toString());
-        }   
+        }
+    }
+    
+    private void markAsRead() throws Exception {
+        String id = io.readLine("What is the id of the reading tip you want to mark as read?");
+        if (getOneTip(id) == null) {
+            io.print("Reading tip doesn't exist.");
+        } else {
+            service.markAsRead(id);
+            io.print(getOneTip(id).toString());
+        }
     }
 
     private void createReadingTip() throws Exception {
@@ -108,6 +120,7 @@ public class ReadingTipUi {
         io.print("(D)elete a reading tip");
         io.print("(L)ist all reading tips");
         io.print("(S)earch reading tips by criteria");
+        io.print("Mark reading tip as (R)ead");
         io.print("(Q)uit");
     }
 
@@ -132,12 +145,12 @@ public class ReadingTipUi {
         searchResults = service.browseReadingTips();
         listSearchResults();
     }
-    
+
     private ReadingTip getOneTip(String id) throws Exception {
         ReadingTip tip = service.getOneTip(id);
         return tip;
     }
-    
+
     private void searchTip() throws Exception {
         printSearchFields();
         String searchField = io.readLine("");
@@ -150,7 +163,7 @@ public class ReadingTipUi {
 
     private void listSearchResults() throws Exception {
         for (int i = 1; i <= searchResults.size(); i++) {
-            io.print(searchResults.get(i-1).toString());
+            io.print(searchResults.get(i - 1).toString());
             io.print("");
         }
     }

@@ -12,6 +12,7 @@ public class VideoTip implements ReadingTip {
     private String[] tags;
     private String[] relatedCourses;
     private final String type = "video";
+    private int read;
 
     public VideoTip(String title) {
         this.title = title;
@@ -61,7 +62,16 @@ public class VideoTip implements ReadingTip {
     public String getMoreInfo2() {
         return comment;
     }
+    
+    @Override
+    public void setRead(int read) {
+        this.read = read;
+    }
 
+    @Override
+    public int getRead(int read) {
+        return read;
+    }
     @Override
     public String toString() {
         return "ID: " + id + "\nTitle: " + title + "\nURL: " + url + "\nType: " + type;
