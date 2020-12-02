@@ -29,3 +29,4 @@ Lataa ohjelmakoodi GitHubista ja avaa asennuskansio terminaalilla. Kirjoita seur
 * cd ReadingTipLibrary
 * ./gradlew shadowJar
 * java -jar build/libs/ReadingTipLibrary-all.jar
+
