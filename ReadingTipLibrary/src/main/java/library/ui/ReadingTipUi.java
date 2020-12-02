@@ -144,7 +144,7 @@ public class ReadingTipUi {
 
         String SearchTerm = io.readLine("Input search term:");
 
-        searchResults = service.searchTip(SearchTerm.toLowerCase(), searchField.toLowerCase());
+        searchResults = service.searchTip(SearchTerm, searchField.toLowerCase());
         listSearchResults();
     }
 
