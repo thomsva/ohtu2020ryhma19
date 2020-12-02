@@ -15,7 +15,7 @@
 
 [Sovellusarkkitehtuuri](Dokumentaatio/Sovellusarkkitehtuuri.md)
 
-[BurndownChart Sprint 1](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/BurndownSprint1.png)
+[Burndown Chart Sprint 1](https://github.com/Muisku/ohtu2020ryhma19/blob/main/Dokumentaatio/BurndownSprint1.png)
 ## Definition of Done
 
 * User storien hyväksymiskriteerit täyttyvät eli Cucumber-testit menevät läpi
