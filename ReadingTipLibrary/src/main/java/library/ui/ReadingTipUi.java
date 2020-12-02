@@ -83,7 +83,7 @@ public class ReadingTipUi {
         String[] additionalInfo = askMoreInfoByType(type);
         ReadingTip tip = service.createTip(type.toLowerCase(), title, additionalInfo[0], additionalInfo[1]);
 
-        io.print(tip.toString());
+        //io.print(tip.toString());
     }
 
     private String[] askMoreInfoByType(String type) {
@@ -150,7 +150,6 @@ public class ReadingTipUi {
 
     private void listSearchResults() throws Exception {
         for (int i = 1; i <= searchResults.size(); i++) {
-            //io.print("Nr: " + i);
             io.print(searchResults.get(i-1).toString());
             io.print("");
         }
