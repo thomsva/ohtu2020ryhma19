@@ -1,5 +1,6 @@
 package library.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -208,6 +209,15 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
             conn.close();
         } catch (Exception e) {
         }
+    }
+    
+    @Override
+    public void deleteDatabaseContents() {
+        int location = databaseAddress.lastIndexOf(":");
+        String fileName = databaseAddress.substring(location+1);
+        File file = new File(fileName);
+        file.delete();
+        //System.out.println("going to delete: " + file.getAbsolutePath());
     }
 
     private String createStatementByField(String searchField) {

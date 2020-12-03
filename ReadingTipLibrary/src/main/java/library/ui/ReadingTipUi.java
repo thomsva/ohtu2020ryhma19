@@ -25,7 +25,7 @@ public class ReadingTipUi {
     /**
      * Starts the user interface.
      */
-    void start(ReadingTipService rts) throws Exception {
+    public void start(ReadingTipService rts) throws Exception {
         
         service = rts;
         searchResults = service.browseReadingTips();

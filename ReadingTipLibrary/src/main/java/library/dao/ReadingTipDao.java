@@ -23,4 +23,6 @@ public interface ReadingTipDao {
     public void markAsRead(String id);
     
     public void markAsUnread(String id);
+    
+    public void deleteDatabaseContents();
 }

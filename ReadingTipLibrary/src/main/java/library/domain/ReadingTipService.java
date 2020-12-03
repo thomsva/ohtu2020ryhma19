@@ -77,6 +77,10 @@ public class ReadingTipService {
         readingTipDao.markAsUnread(id);
     }
     
+    public void deleteDatabaseContents() {
+        readingTipDao.deleteDatabaseContents();
+    }
+    
     
     private ReadingTip createTipWithType(String type, String title) {
 
