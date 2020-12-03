@@ -155,6 +155,7 @@ public class ReadingTipUi {
         io.print("Options:");
         io.print("Type");
         io.print("Title");
+        io.print("Author");
         
     }
     

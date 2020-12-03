@@ -226,13 +226,14 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         if (searchField.equals("type")) {
             stmt.append("type = ?");
         }
-        /*if(searchField.equals("author")){
-            builder.append("author=?");
+        if (searchField.equals("author")) {
+            stmt.append("info1 = ?");
         }
-         */
+
         if (searchField.equals("title")) {
             stmt.append("title = ?");
         }
+
         return stmt.toString();
     }
 
