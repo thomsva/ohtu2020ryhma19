@@ -28,7 +28,7 @@ public class ReadingTipDatabaseDaoTest implements ReadingTipDao {
 
     @Before
     public void setUp() {
-        //ReadingDatabase = new ReadingTipDatabaseDao("jdbc:sqlite:test.db");
+        ReadingDatabase = new ReadingTipDatabaseDao("jdbc:sqlite:test.db");
 
     }
 
@@ -36,6 +36,7 @@ public class ReadingTipDatabaseDaoTest implements ReadingTipDao {
     public void addTip(ReadingTip bookTip) throws Exception {
 
         readingTips.add(bookTip);
+        ReadingDatabase.addTip(bookTip);
     }
 
     @Override

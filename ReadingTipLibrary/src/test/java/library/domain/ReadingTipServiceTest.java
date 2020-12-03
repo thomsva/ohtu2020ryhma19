@@ -19,19 +19,21 @@ public class ReadingTipServiceTest {
 
     FakeReadingTipDaoTest readingTip;
     ReadingTipService service;
+    List<ReadingTip> readingTips;
 
     public ReadingTipServiceTest() {
     }
 
     @Before
     public void setUp() throws Exception {
+        
         readingTip = new FakeReadingTipDaoTest();
         service = new ReadingTipService();
-        List<ReadingTip> readingTips = new ArrayList<>();
+        readingTips = new ArrayList<>();
         readingTip.addTip(new BookTip("First title"));
         readingTip.addTip(new BookTip("Second title"));
         readingTip.addTip(new BookTip("Third title"));
-        readingTips.add(new BookTip("First title"));
+        readingTips.add(new BookTip("Dune"));
 
     }
 
@@ -52,6 +54,17 @@ public class ReadingTipServiceTest {
         List<ReadingTip> readingTips = readingTip.getAllTips();
 
         assertEquals(readingTips.get(0).getTitle(), "First title");
+    }
+
+    @Test
+    public void aAuthorAndIsbnCanBeAddedForbook() throws Exception {
+        //readingTips.get(0).setMoreInfo1("Herbert");
+        //readingTips.get(0).setMoreInfo2("3105121");
+        // service.getOneTip("1");
+        readingTips.get(0).setMoreInfo1("Herbert");
+        readingTips.get(0).setMoreInfo2("1234");
+        assertEquals(service.getOneTip("1").getMoreInfo1(), "herb");
+        assertEquals(readingTips.get(0).getMoreInfo2(), "1234");
     }
 
 }
