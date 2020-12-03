@@ -54,6 +54,17 @@ public class Stepdefs {
     public void readingTipCanBeFound(String expectedOutput) {
         assertTrue(io.getPrints().contains(expectedOutput));
     }
+    
+    @Then("system's response contains {string}")
+    public void responseContains(String expectedOutput) {
+        boolean contains = false;
+        for (String s : io.getPrints()) {
+            if (s.contains(expectedOutput)) {
+                contains = true;
+            }
+        }
+        assertTrue(contains);
+    }
    
     @When("all reading tips are listed")
     public void readingTipIsSaved() throws Exception {
@@ -63,12 +74,12 @@ public class Stepdefs {
         ui.start(service);        
     }
 
-    @Given("reading tip with title {string} and type {string} is created")
-    public void readingTipWithTitleAndTypeIsCreated(String title, String type) throws Exception {
+    @Given("reading tip with title {string}, type {string}, and author {string} is created")
+    public void readingTipWithTitleAndTypeIsCreated(String title, String type, String author) throws Exception {
 	inputLines.add("A");
 	inputLines.add(title);
         inputLines.add(type);
-        inputLines.add("author");
+        inputLines.add(author);
         inputLines.add("isbn");
     }
 
@@ -82,6 +93,25 @@ public class Stepdefs {
 	inputLines.add(id);
 
 	io = new StubIO(inputLines);
+        ui = new ReadingTipUi(io);
+        ui.start(service);
+    }
+    
+    @Given("command search is selected")
+    public void commandSearchIsSelected() {
+        inputLines.add("S");
+    }
+    
+    @Given("search criteria {string} is selected")
+    public void searchCriteriaIsSelected(String criteria) {
+        inputLines.add(criteria);
+    }
+    
+    @When("search term {string} is given")
+    public void searchByTerm(String term) throws Exception {
+        inputLines.add(term);
+
+        io = new StubIO(inputLines);
         ui = new ReadingTipUi(io);
         ui.start(service);
     }
