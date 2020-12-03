@@ -18,12 +18,16 @@ public class ReadingTipUi {
         this.io = io;
     }
 
+    public void start() throws Exception {
+        start(new ReadingTipService());
+    }
+    
     /**
      * Starts the user interface.
      */
-    public void start() throws Exception {
+    void start(ReadingTipService rts) throws Exception {
         
-        service = new ReadingTipService();
+        service = rts;
         searchResults = service.browseReadingTips();
         
         io.print("Hello user!");
