@@ -29,7 +29,11 @@ public class ReadingTipDatabaseDaoTest implements ReadingTipDao {
     @Before
     public void setUp() {
         ReadingDatabase = new ReadingTipDatabaseDao("jdbc:sqlite:test.db");
-
+    }
+    
+    @After
+    public void tearDown() {
+        ReadingDatabase.deleteDatabaseContents();
     }
 
     @Override
