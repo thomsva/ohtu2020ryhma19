@@ -52,9 +52,8 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         Connection conn = DriverManager.getConnection(databaseAddress);
         List<ReadingTip> readingTips = new ArrayList<>();
         try {
-            String stmt = createStatementByField(searchField);
+            String stmt = createStatementByField(searchField, searchTerm);
             PreparedStatement p = conn.prepareStatement(stmt);
-            p.setString(1, searchTerm);
 
             ResultSet result = p.executeQuery();
             readingTips = createListFromResult(result);
@@ -210,30 +209,30 @@ public class ReadingTipDatabaseDao implements ReadingTipDao {
         } catch (Exception e) {
         }
     }
-    
+
     @Override
     public void deleteDatabaseContents() {
         int location = databaseAddress.lastIndexOf(":");
-        String fileName = databaseAddress.substring(location+1);
+        String fileName = databaseAddress.substring(location + 1);
         File file = new File(fileName);
         file.delete();
         //System.out.println("going to delete: " + file.getAbsolutePath());
     }
 
-    private String createStatementByField(String searchField) {
+    private String createStatementByField(String searchField, String searchTerm) {
         StringBuilder stmt = new StringBuilder();
+        
         stmt.append("SELECT * FROM ReadingTip where ");
-        if (searchField.equals("type")) {
-            stmt.append("type = ?");
+        
+        if (!searchField.isEmpty()) {
+           stmt.append(searchField + " LIKE '%" + searchTerm + "%'"); 
+        } else {
+            stmt.append("type LIKE '%" + searchTerm + "%' OR ");
+            stmt.append("title LIKE '%" + searchTerm + "%' OR ");
+            stmt.append("info1 LIKE '%" + searchTerm + "%' OR ");
+            stmt.append("info2 LIKE '%" + searchTerm + "%'");
         }
-        if (searchField.equals("author")) {
-            stmt.append("info1 = ?");
-        }
-
-        if (searchField.equals("title")) {
-            stmt.append("title = ?");
-        }
-
+        
         return stmt.toString();
     }
 
