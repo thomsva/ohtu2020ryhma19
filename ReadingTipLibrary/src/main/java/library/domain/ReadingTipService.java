@@ -16,7 +16,11 @@ public class ReadingTipService {
     private ReadingTipDao readingTipDao;
 
     public ReadingTipService() {
-        readingTipDao = new ReadingTipDatabaseDao("jdbc:sqlite:readingtip.db");
+        this(new ReadingTipDatabaseDao("jdbc:sqlite:readingtip.db"));
+    }
+    
+    public ReadingTipService(ReadingTipDao rtd) {
+        readingTipDao = rtd;
     }
 
     /**
