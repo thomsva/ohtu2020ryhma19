@@ -64,6 +64,7 @@ public class ReadingTipUi {
             io.print("Reading tip doesn't exist.");
         } else {
             service.removeTip(id);
+            io.print("Reading tip is deleted.");
         }
     }
     
