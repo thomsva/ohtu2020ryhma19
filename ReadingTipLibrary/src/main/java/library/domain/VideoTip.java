@@ -69,7 +69,7 @@ public class VideoTip implements ReadingTip {
     }
 
     @Override
-    public int getRead(int read) {
+    public int getRead() {
         return read;
     }
     @Override

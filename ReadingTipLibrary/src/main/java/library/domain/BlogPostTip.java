@@ -67,7 +67,7 @@ public class BlogPostTip implements ReadingTip {
     }
 
     @Override
-    public int getRead(int read) {
+    public int getRead() {
         return read;
     }
     

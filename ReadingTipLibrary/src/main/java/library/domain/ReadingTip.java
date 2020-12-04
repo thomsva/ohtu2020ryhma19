@@ -23,7 +23,7 @@ public interface ReadingTip {
     
     void setRead(int read);
     
-    int getRead (int read);
+    int getRead ();
     
     String getMoreInfo1();
     

@@ -69,7 +69,7 @@ public class PodcastTip implements ReadingTip {
     }
 
     @Override
-    public int getRead(int read) {
+    public int getRead() {
         return read;
     }
 
